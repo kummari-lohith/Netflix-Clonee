@@ -1,0 +1,148 @@
+.myListContainer {
+  min-height: 100vh;
+  background-color: #141414;
+}
+
+.content {
+  padding-top: 68px;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 60px 4% 40px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+  font-weight: 400;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.emptyIcon {
+  font-size: 120px;
+  margin-bottom: 30px;
+  opacity: 0.5;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.emptyTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.emptyText {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+  max-width: 500px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.browseBtn {
+  padding: 14px 36px;
+  background: #E50914;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.browseBtn:hover {
+  background: #f40612;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+}
+
+/* Movies Grid */
+.moviesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 4% 60px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .moviesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 40px 4% 30px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .emptyIcon {
+    font-size: 80px;
+  }
+
+  .emptyTitle {
+    font-size: 1.5rem;
+  }
+
+  .emptyText {
+    font-size: 1rem;
+  }
+
+  .moviesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .moviesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

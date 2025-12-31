@@ -1,0 +1,249 @@
+.signupContainer {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+              url('https://assets.nflxext.com/ffe/siteui/vlv3/b2c3e95b-b7b5-4bb7-a883-f4bfc7472fb7/19fc1a4c-82db-4481-ad08-3a1dffbb8c39/IN-en-20240805-POP_SIGNUP_TWO_WEEKS-perspective_WEB_24a485f6-1820-42be-9b60-1b066f1eb869_large.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 900;
+  color: #E50914;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(229, 9, 20, 0.5);
+}
+
+.signinBtn {
+  background: #E50914;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.signinBtn:hover {
+  background: #f40612;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.5);
+}
+
+.signupContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 40px;
+}
+
+.signupBox {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 60px 68px 40px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #b3b3b3;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.error {
+  background-color: #e87c03;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 20px;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.input:focus {
+  background: #454545;
+}
+
+.input::placeholder {
+  color: #8c8c8c;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 16px;
+  background: #E50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.submitBtn:hover {
+  background: #f40612;
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.5);
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  background: #8c8c8c;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loginPrompt {
+  margin-top: 20px;
+  color: #737373;
+  font-size: 16px;
+  text-align: center;
+}
+
+.existingText {
+  color: #737373;
+}
+
+.loginLink {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+.terms {
+  margin-top: 20px;
+  color: #8c8c8c;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.footer {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 30px 50px;
+  color: #737373;
+  font-size: 13px;
+}
+
+.footerContent {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footerContent p {
+  margin-bottom: 20px;
+}
+
+.footerLinks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.footerLinks a {
+  color: #737373;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .signupBox {
+    padding: 40px 30px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .footer {
+    padding: 30px 20px;
+  }
+
+  .footerLinks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .signupBox {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .footerLinks {
+    grid-template-columns: 1fr;
+  }
+}
