@@ -8,6 +8,10 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import MyList from './pages/MyList';
+import TVShows from './pages/TVShows';
+import Movies from './pages/Movies';
+import NewAndPopular from './pages/NewAndPopular';
+import BrowseByLanguages from './pages/BrowseByLanguages';
 
 function App() {
   return (
@@ -39,6 +43,46 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <MyList />
+                  </ProtectedRoute>
+                } 
+              />
+
+              {/* Protected TV shows route */}
+              <Route 
+                path="/tv-shows" 
+                element={
+                  <ProtectedRoute>
+                    <TVShows />
+                  </ProtectedRoute>
+                } 
+              />
+
+              {/* Protected movies route */}
+              <Route 
+                path="/movies" 
+                element={
+                  <ProtectedRoute>
+                    <Movies />
+                  </ProtectedRoute>
+                } 
+              />
+
+              {/* Protected new and popular route */}
+              <Route 
+                path="/new-and-popular" 
+                element={
+                  <ProtectedRoute>
+                    <NewAndPopular />
+                  </ProtectedRoute>
+                } 
+              />
+
+              {/* Protected browse by languages route */}
+              <Route 
+                path="/browse-by-languages" 
+                element={
+                  <ProtectedRoute>
+                    <BrowseByLanguages />
                   </ProtectedRoute>
                 } 
               />

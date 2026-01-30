@@ -192,6 +192,23 @@ export const getRomanceMovies = async () => {
 };
 
 /**
+ * Get movie details with videos and credits
+ */
+export const getMovieDetails = async (id, mediaType = 'movie') => {
+  try {
+    const response = await tmdbApi.get(`/${mediaType}/${id}`, {
+      params: {
+        append_to_response: 'videos,credits',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    throw error;
+  }
+};
+
+/**
  * Get Telugu movies
  */
 export const getTeluguMovies = async () => {
@@ -210,18 +227,123 @@ export const getTeluguMovies = async () => {
 };
 
 /**
- * Get movie details with videos and credits
+ * Get TV shows by category
  */
-export const getMovieDetails = async (id, mediaType = 'movie') => {
+export const getTrendingTVShows = async () => {
   try {
-    const response = await tmdbApi.get(`/${mediaType}/${id}`, {
+    const response = await tmdbApi.get('/trending/tv/week');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching trending TV shows:', error);
+    throw error;
+  }
+};
+
+export const getTopRatedTVShows = async () => {
+  try {
+    const response = await tmdbApi.get('/tv/top_rated');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching top rated TV shows:', error);
+    throw error;
+  }
+};
+
+export const getPopularTVShows = async () => {
+  try {
+    const response = await tmdbApi.get('/tv/popular');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching popular TV shows:', error);
+    throw error;
+  }
+};
+
+export const getTVShowsByGenre = async (genreId) => {
+  try {
+    const response = await tmdbApi.get('/discover/tv', {
       params: {
-        append_to_response: 'videos,credits',
+        with_genres: genreId,
       },
     });
-    return response.data;
+    return response.data.results;
   } catch (error) {
-    console.error('Error fetching movie details:', error);
+    console.error('Error fetching TV shows by genre:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get upcoming movies
+ */
+export const getUpcomingMovies = async () => {
+  try {
+    const response = await tmdbApi.get('/movie/upcoming');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching upcoming movies:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get now playing movies
+ */
+export const getNowPlayingMovies = async () => {
+  try {
+    const response = await tmdbApi.get('/movie/now_playing');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching now playing movies:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get popular movies
+ */
+export const getPopularMovies = async () => {
+  try {
+    const response = await tmdbApi.get('/movie/popular');
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get movies by language
+ */
+export const getMoviesByLanguage = async (languageCode) => {
+  try {
+    const response = await tmdbApi.get('/discover/movie', {
+      params: {
+        with_original_language: languageCode,
+        sort_by: 'popularity.desc',
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(`Error fetching movies in ${languageCode}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Get TV shows by language
+ */
+export const getTVShowsByLanguage = async (languageCode) => {
+  try {
+    const response = await tmdbApi.get('/discover/tv', {
+      params: {
+        with_original_language: languageCode,
+        sort_by: 'popularity.desc',
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(`Error fetching TV shows in ${languageCode}:`, error);
     throw error;
   }
 };
@@ -298,6 +420,15 @@ export default {
   getDocumentaries,
   getRomanceMovies,
   getTeluguMovies,
+  getTrendingTVShows,
+  getTopRatedTVShows,
+  getPopularTVShows,
+  getTVShowsByGenre,
+  getUpcomingMovies,
+  getNowPlayingMovies,
+  getPopularMovies,
+  getMoviesByLanguage,
+  getTVShowsByLanguage,
   getMovieDetails,
   searchMovies,
   fetchAllCategories,

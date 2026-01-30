@@ -4,6 +4,7 @@ import { searchMovies } from '../services/api';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useDebounce } from '../hooks/useDebounce';
 import { useAuth } from '../context/AuthContext';
+import SearchResults from './SearchResults';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -12,6 +13,8 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const debouncedSearch = useDebounce(searchQuery, 500);
 
@@ -20,16 +23,32 @@ const Navbar = () => {
   // Handle search
   useEffect(() => {
     if (debouncedSearch) {
-      searchMovies(debouncedSearch).then(results => {
-        console.log('Search results:', results);
-        // TODO: Display search results
-      });
+      setSearchLoading(true);
+      searchMovies(debouncedSearch)
+        .then(results => {
+          setSearchResults(results);
+          setSearchLoading(false);
+        })
+        .catch(error => {
+          console.error('Search error:', error);
+          setSearchResults([]);
+          setSearchLoading(false);
+        });
+    } else {
+      setSearchResults([]);
+      setSearchLoading(false);
     }
   }, [debouncedSearch]);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
+  };
+
+  const handleCloseSearch = () => {
+    setSearchQuery('');
+    setSearchResults([]);
+    setSearchExpanded(false);
   };
 
   return (
@@ -42,11 +61,11 @@ const Navbar = () => {
       {/* Navigation Links */}
       <div className={styles.navLinks}>
         <a onClick={() => navigate('/browse')} className={styles.active}>Home</a>
-        <a href="#">TV Shows</a>
-        <a href="#">Movies</a>
-        <a href="#">New & Popular</a>
+        <a onClick={() => navigate('/tv-shows')}>TV Shows</a>
+        <a onClick={() => navigate('/movies')}>Movies</a>
+        <a onClick={() => navigate('/new-and-popular')}>New & Popular</a>
         <a onClick={() => navigate('/my-list')}>My List</a>
-        <a href="#">Browse by Languages</a>
+        <a onClick={() => navigate('/browse-by-languages')}>Browse by Languages</a>
       </div>
 
       {/* Right Section - Search, Notifications & Profile */}
@@ -74,6 +93,13 @@ const Navbar = () => {
           >
             🔍
           </div>
+          {searchExpanded && searchQuery && (
+            <SearchResults
+              results={searchResults}
+              loading={searchLoading}
+              onClose={handleCloseSearch}
+            />
+          )}
         </div>
 
         <div className={styles.icon}>🔔</div>
